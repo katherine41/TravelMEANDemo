@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#landingPage">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="page-scroll" href="#about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<section id="profileMain" ng-controller="findAttractionsController as model">
+    <div class="container">
+        <div class="myProfile">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-tree-deciduous pull-left"></span>
+                    <h3>{{model.eachAttraction.name}}</h3>
+                    <div></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 attractionPhoto">
+                    <div class="jga-widget-tool">
+                        <a href="#login">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </a>
+                    </div>
+                    <img ng-src="{{model.eachAttraction.image}}">
+                </div>
+                    <div class="col-sm-7 attractionDescribe">
+                    <p><span>Description: </span>{{model.eachAttraction.description}}</p>
+                    <p><span>Address: </span>{{model.eachAttraction.address}}</p>
+                    <p style="overflow: auto"><span>Official Website: </span><a ng-href="{{model.eachAttraction.official}}">{{model.eachAttraction.official}}</a></p>
+                </div>
+                </div>
+                <!--<div class="row attractionDescribe">-->
+                    <!--<br>-->
+                    <!--<p><span>Attraction Map:</span></p>-->
+                <!--<div class="embed-responsive embed-responsive-16by9">-->
+                    <!--<iframe width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJGzE9DS1l44kRoOhiASS_fHg&key=AIzaSyAtj0Egf0up_qsDHwMrew9LpXpcFBqWVsk" allowfullscreen></iframe>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</section>
+<br><br>
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-right" id="signup">
+            <a href="#register">Sign Up</a>
+        </div>
+        <div class="pull-right" id="login">
+            <a href="#login">Log In</a>
+        </div>
+    </div>
+</nav>

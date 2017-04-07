@@ -1,0 +1,86 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<section id="profileMain" >
+
+    <div class="container" ng-controller="findAttractionsController as model">
+        <div class="myProfile">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-tree-deciduous pull-left"></span>
+                    <h3>{{model.eachAttraction.name}}</h3>
+                    <div></div>
+                </div>
+                <div ng-click="model.alertClose()" ng-if="model.existAttraction" class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.existAttraction}}
+                </div>
+                <div ng-click="model.alertClose()" ng-if="model.attractionSuccess" class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.attractionSuccess}}
+                </div>
+                <div class="col-sm-5 attractionPhoto">
+                    <div class="jga-widget-tool">
+                        <a ng-click="model.likeAttraction(model.eachAttraction._id,model.eachAttraction.name)">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </a>
+                    </div>
+                    <img ng-src="{{model.eachAttraction.image}}">
+                </div>
+                <div class="col-sm-7 attractionDescribe">
+                    <p><span>Description: </span>{{model.eachAttraction.description}}</p>
+                    <p><span>Address: </span>{{model.eachAttraction.address}}</p>
+                    <p style="overflow: auto"><span>Official Website: </span><a ng-href="{{model.eachAttraction.official}}">{{model.eachAttraction.official}}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br><br>
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-left">
+            <a href="#profile/{{model.userId}}"><img src="image/love1.png" id="loveicon"></a>
+        </div>
+        <div class="pull-right">
+            <a href="#profile/{{model.userId}}"><img src="image/users.png"></a>
+        </div>
+    </div>
+</nav>

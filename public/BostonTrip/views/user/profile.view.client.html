@@ -1,0 +1,208 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="profileBackground">
+
+</section>
+<section id="profileMain">
+    <!--<div id="profilePerson"><img src="image/users.png"></div>-->
+    <div class="container">
+        <div class="myProfile">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-user pull-left"></span>
+                    <h3>My Profile</h3>
+                    <div></div>
+                </div>
+                <div ng-if="model.updateProfile" class="alert alert-success alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.updateProfile}}
+                </div>
+                <div class="profileDetail row">
+                    <div class="col-xs-4 left"><p>Username:</p></div>
+                    <div class="col-xs-8 right">
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Username"
+                                   style="  font-size: 16px;"
+                                   ng-model="model.user.username"
+                                   value="{{model.user.username}}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="model.updateUser(model.user)">Change</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profileDetail row">
+                    <div class="col-xs-4 left"><p>Email:</p></div>
+                    <div class="col-xs-8 right"><p>{{model.user.email}}</p></div>
+                </div>
+                <div class="profileDetail row" ng-controller="userMainpageController as model">
+                    <div class="col-xs-4 left"><p>Follows:</p></div>
+                    <div class="col-xs-8 right">
+                        <span>{{model.followsNumber}} Follows</span><br>
+                        <span ng-repeat="follow in model.follows">
+                            <a href="#/{{model.userId}}/otherProfile/{{follow.follow}}" style="color:  #7d7d7d">{{follow.followName}}</a>&nbsp;
+                            <span style="font-size: 14px;color:#7d7d7d;cursor: pointer"
+                                  ng-click="model.unFollow(follow.follow)"
+                                  class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;
+                        </span>
+                    </div>
+                </div>
+                <div class="profileDetail row" ng-controller="userMainpageController as model">
+                    <div class="col-xs-4 left"><p>Followers:</p></div>
+                    <div class="col-xs-8 right">
+                        <span>{{model.followersNumber}} Followers</span><br>
+                        <span ng-repeat="follow in model.followers">
+                            <a href="#/{{model.userId}}/otherProfile/{{follow.follower}}" style="color: #7d7d7d">{{follow.followerName}}</a>&nbsp;
+                        </span>
+                    </div>
+                </div>
+                <div class="profileDetail row">
+                    <div class="col-xs-4 left"><p style="color: #de5556">Logout:</p></div>
+                    <div class="col-xs-8 right"><a href="#landingPage"><span class="glyphicon glyphicon-log-out" style="color: #de5657"></span></a></div>
+                </div>
+
+                <div class="profileDetail row">
+                    <div class="col-xs-4 left"><p>Delete this User:</p></div>
+                    <div class="col-xs-8 right"><a ng-click="model.deleteUser()">Sure to delete?</a></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="myFavorites" ng-controller="userMainpageController as model">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="introtitle">
+                <span class="glyphicon glyphicon-heart pull-left"></span>
+                <a><h3>My Favorites</h3></a>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">1. Attractions</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.likeAttractions|orderBy : 'rank'">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.unlikeAttraction(likeAttraction._id)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a href="#/{{model.userId}}/attractions/{{likeAttraction._id}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.rank}}. {{likeAttraction.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">2. Travel Guide</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.likeGuides">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.unlikeGuide(likeAttraction._id)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a href="#/{{model.userId}}/guide/{{likeAttraction._id}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">3. Hotels</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.likeHotels">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.unlikeHotel(likeAttraction._id)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a ng-href="{{likeAttraction.booking}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                            <p><span>${{likeAttraction.price}}</span> | <span class="stars">{{likeAttraction.stars}} STARS</span></p>
+                            <p>{{likeAttraction.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">4. Restaurants</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.likeEats">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.unlikeEat(likeAttraction._id)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a ng-href="{{likeAttraction.url}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                            <p><span>${{likeAttraction.price}}</span> | <span class="stars">{{likeAttraction.stars}} STARS</span></p>
+                            <p>{{likeAttraction.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

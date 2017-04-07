@@ -1,0 +1,109 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<section id="profileMain">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="myProfile">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-info-sign pull-left"></span>
+                    <h3>About Boston</h3>
+                    <div></div>
+                </div>
+                <p class="description"><span>Intro: </span>Boston is the capital of the Commonwealth of Massachusetts in
+                    the United States, it is also the largest city in New England and
+                    the 24th largest city in the United States. One of the oldest cities in the United States,
+                    its rich history attracts many tourists. Also many colleges and universities make Boston
+                    an international center of higher education.</p>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="description"><span>Travel Guide: </span>The greater Boston area is a wonderful blend of stylish sophistication
+                            and historic New England charm. Attend one of our renowned events, uncover Boston's history
+                            by walking our famous Freedom Trail, dine in one of our new restaurants (or dine in an old
+                            favorite), shop anywhere from upscale boutiques on Newbury Street to premium outlet malls
+                            a short distance from downtown Boston, take a tour... the possibilities are endless!</p>
+                        <p class="description" id="temprature"><span>Weather: </span></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <br>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/xQXsKNScdQo" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <p class="description"><span>City Map:</span></p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJGzE9DS1l44kRoOhiASS_fHg&key=AIzaSyAtj0Egf0up_qsDHwMrew9LpXpcFBqWVsk" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</section>
+<br><br>
+
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-left">
+            <a href="#profile/{{model.userId}}"><img src="image/love1.png" id="loveicon"></a>
+        </div>
+        <div class="pull-right">
+            <a href="#profile/{{model.userId}}"><img src="image/users.png"></a>
+        </div>
+    </div>
+</nav>
+<script>
+    $(init);
+    function init(){
+        $.ajax({
+            url:"http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=40680bd060047bd428a3f6a2748e5f31&units=metric",
+            success:weatherapi
+        });
+        function weatherapi(response){
+            var weatherboston=response.main;
+            var temp_min=parseInt(weatherboston.temp_min);
+            var temp_max=parseInt(weatherboston.temp_max);
+            $("#temprature").append(temp_min+"&#176;C"+"&nbsp;"+"~"+"&nbsp;"+temp_max+"&#176;C");
+        }
+    }
+</script>

@@ -1,0 +1,130 @@
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#landingPage">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll" href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<br>
+<div class="container">
+    <div class="row" ng-controller="findGuidesController as model">
+        <div class="col-sm-8" style="border-right:1px #eeeeee solid; padding: 0 30px">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;&nbsp;{{model.eachGuide.name}}<small> | {{model.eachGuide.userName}}</small></h1>
+            </div>
+            <p>"{{model.eachGuide.description}}"</p>
+            <div class="guideContext">
+                <div
+                        ng-switch on="model.eachGuide._id">
+                    <div ng-switch-when="1">
+                        <ng-include
+                                src="'views/guide/guide1.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-when="2">
+                        <ng-include
+                                src="'views/guide/guide2.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-when="3">
+                        <ng-include
+                                src="'views/guide/guide3.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-default>Page not found.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 commentPart">
+            <br>
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#login" style="color: black"><h3 class="panel-title">ADD TO FAVORITE:<span class="glyphicon glyphicon-heart"></span></h3></a>
+                </div>
+            </div>
+
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading">-->
+                    <!--<a href="#login" style="color: black"><h3 class="panel-title" style="text-transform: uppercase">FOLLOW THIS USER:<span class="glyphicon glyphicon-ok-circle"></span></h3></a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">COMMENT:</h3>
+                </div>
+                <div class="panel-body">
+                    <textarea class="form-control" disabled
+                              rows="4"
+                              placeholder="Please login first..."></textarea>
+                    <a href="#login"><button type="submit" class="btn btn-primary pull-right" style="margin-top: 10px">Login Here</button></a>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">USER COMMENTS:</h3>
+                </div>
+                <div class="panel-body userComment" ng-repeat="comment in model.comments">
+                    <div>
+                        <span>{{comment.userName}}:</span>
+                        <p>{{comment.userComment}}</p>
+                    </div>
+                    <div>
+                        <a style="color: #de5556;text-decoration: underline;cursor: pointer" href="#login" class="pull-left">Follow this user</a>
+                        <p class="pull-right">{{comment.date}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-right" id="signup">
+            <a href="#register">Sign Up</a>
+        </div>
+        <div class="pull-right" id="login">
+            <a href="#login">Log In</a>
+        </div>
+    </div>
+</nav>

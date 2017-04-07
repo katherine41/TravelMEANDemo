@@ -1,0 +1,358 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6"></div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="mainpage1" class="section1">
+    <form action="#/search">
+        <div class="input-group">
+            <input type="text" name="q"
+                   id="tipue_search_input"
+                   list="search"
+                   placeholder="Boston Attractions/Hotels/Restaurants..."
+                   class="form-control"
+                   autocomplete="off" required>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">SEARCH</button>
+            </span>
+        </div>
+        <datalist id="search">
+            <option>Attractions</option>
+            <option>Restaurants</option>
+            <option>Hotels</option>
+            <option>Guides</option>
+            <option>Harvard University</option>
+            <option>Freedom Trail</option>
+            <option>MIT</option>
+        </datalist>
+    </form>
+</section>
+
+<section id="mainpage2" class="section2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-tree-deciduous pull-left"></span>
+                    <a href="#/{{model.userId}}/attractions"><h3>Attractions</h3></a>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div ng-if="model.existAttraction" class="alert alert-warning alert-dismissible" role="alert">
+            <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.existAttraction}}
+        </div>
+        <div ng-if="model.attractionSuccess" class="alert alert-success alert-dismissible" role="alert">
+            <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.attractionSuccess}}
+        </div>
+        <div class="row detailShow">
+            <div class="col-sm-3" ng-repeat="attraction in model.attraction|filter:{type:1}">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.likeAttraction(attraction._id,attraction.name)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a href="#/{{model.userId}}/attractions/{{attraction._id}}">
+                    <div class="thumbnail attraction">
+                        <img ng-src={{attraction.image}}>
+                        <div class="caption">
+                            <h5>{{attraction.rank}}. {{attraction.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="mainpage3" class="section2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-info-sign pull-left"></span>
+                    <a href="#/{{model.userId}}/about"><h3>About Boston</h3></a>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="description"><span>Boston</span> is the capital of the Commonwealth of Massachusetts in
+                    the United States, it is also the largest city in New England and
+                    the 24th largest city in the United States. One of the oldest cities in the United States,
+                    its rich history attracts many tourists. Also many colleges and universities make Boston
+                    an international center of higher education.</p>
+                <p class="description" id="temprature"><span>Weather: </span></p>
+            </div>
+            <div class="col-sm-6">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJGzE9DS1l44kRoOhiASS_fHg&key=AIzaSyAtj0Egf0up_qsDHwMrew9LpXpcFBqWVsk" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="mainpage4" class="section2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-road pull-left"></span>
+                    <a href="#/{{model.userId}}/guide"><h3>Travel Guide</h3></a>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" ng-repeat="guide in model.guides">
+                <a href="#/{{model.userId}}/guide/{{guide._id}}">
+                    <div class="hoverwrapper">
+                        <img ng-src={{guide.image}}>
+                        <div class="hovershow">
+                            <div class="hoverauthor"><img ng-src={{guide.userPhoto}}></div>
+                            <h3>{{guide.name}}</h3>
+                            <p>By {{guide.userName}}</p>
+                            <p class="hoverhidden">{{guide.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="mainpage5" class="section2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-glass pull-left"></span>
+                    <a href="#/{{model.userId}}/live"><h3>Live and Eat</h3></a>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="hotel container">
+        <div ng-if="model.existHotel" class="alert alert-warning alert-dismissible" role="alert">
+            <button  ng-click="model.alertClose()"  type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.existHotel}}
+        </div>
+        <div ng-if="model.hotelSuccess" class="alert alert-success alert-dismissible" role="alert">
+            <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.hotelSuccess}}
+        </div>
+        <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="Most Popular">
+                <div class="hotelbackground">
+                    <div class="row">
+                        <div class="col-sm-3" ng-repeat="popular in model.hotels|filter:{type:1}">
+                            <div class="jga-widget-tool">
+                                <a ng-click="model.likeHotel(popular._id,popular.name)">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </a>
+                            </div>
+                            <a ng-href="{{popular.booking}}">
+                                <div class="thumbnail">
+                                    <img ng-src={{popular.image}}>
+                                    <div class="caption">
+                                        <h3>{{popular.name}}</h3>
+                                        <h4>${{popular.price}}&nbsp;&nbsp;<span>{{popular.stars}} STARS</span></h4>
+                                        <p>{{popular.address}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" heading="4 stars and higher">
+                <div class="hotelbackground">
+                    <div class="row">
+                        <div class="col-sm-3" ng-repeat="popular in model.hotels|filter:{type:2}">
+                            <div class="jga-widget-tool">
+                                <a ng-click="model.likeHotel(popular._id,popular.name)">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </a>
+                            </div>
+                            <a ng-href="{{popular.booking}}">
+                                <div class="thumbnail">
+                                    <img ng-src={{popular.image}}>
+                                    <div class="caption">
+                                        <h3>{{popular.name}}</h3>
+                                        <h4>${{popular.price}}&nbsp;&nbsp;<span>{{popular.stars}} STARS</span></h4>
+                                        <p>{{popular.address}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="2" heading="3 stars and lower">
+                <div class="hotelbackground">
+                    <div class="row">
+                        <div class="col-sm-3" ng-repeat="popular in model.hotels|filter:{type:3}">
+                            <div class="jga-widget-tool">
+                                <a ng-click="model.likeHotel(popular._id,popular.name)">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </a>
+                            </div>
+                            <a ng-href="{{popular.booking}}">
+                                <div class="thumbnail">
+                                    <img ng-src={{popular.image}}>
+                                    <div class="caption">
+                                        <h3>{{popular.name}}</h3>
+                                        <h4>${{popular.price}}&nbsp;&nbsp;<span>{{popular.stars}} STARS</span></h4>
+                                        <p>{{popular.address}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="container eat">
+        <br>
+        <div ng-if="model.existEat" class="alert alert-warning alert-dismissible" role="alert">
+            <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.existEat}}
+        </div>
+        <div ng-if="model.eatSuccess" class="alert alert-success alert-dismissible" role="alert">
+            <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{model.eatSuccess}}
+        </div>
+        <h3>Seafood:</h3>
+        <div class="row detailShow">
+            <div class="col-sm-3" ng-repeat="eat in model.eats|filter:{type:1}">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.likeEat(eat._id,eat.name)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a ng-href="{{eat.url}}">
+                    <div class="thumbnail">
+                        <img ng-src={{eat.image}}>
+                        <div class="caption">
+                            <h3>{{eat.name}}</h3>
+                            <p><span>{{eat.price}}</span> | <span class="stars">{{eat.stars}} STARS</span></p>
+                            <p>{{eat.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <h3>Desserts:</h3>
+        <div class="row detailShow">
+            <div class="col-sm-3" ng-repeat="eat in model.eats|filter:{type:2}">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.likeEat(eat._id,eat.name)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a ng-href="{{eat.url}}">
+                    <div class="thumbnail">
+                        <img ng-src={{eat.image}}>
+                        <div class="caption">
+                            <h3>{{eat.name}}</h3>
+                            <p><span>{{eat.price}}</span> | <span class="stars">{{eat.stars}} STARS</span></p>
+                            <p>{{eat.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <h3>Fast Foods:</h3>
+        <div class="row detailShow">
+            <div class="col-sm-3" ng-repeat="eat in model.eats|filter:{type:3}">
+                <div class="jga-widget-tool">
+                    <a ng-click="model.likeEat(eat._id,eat.name)">
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </a>
+                </div>
+                <a ng-href="{{eat.url}}">
+                    <div class="thumbnail">
+                        <img ng-src={{eat.image}}>
+                        <div class="caption">
+                            <h3>{{eat.name}}</h3>
+                            <p><span>{{eat.price}}</span> | <span class="stars">{{eat.stars}} STARS</span></p>
+                            <p>{{eat.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-left">
+            <a href="#profile/{{model.userId}}"><img src="image/love1.png" id="loveicon"></a>
+        </div>
+        <div class="pull-right">
+            <a href="#profile/{{model.userId}}"><img src="image/users.png"></a>
+        </div>
+    </div>
+</nav>
+<script>
+    $(init);
+    function init(){
+        $.ajax({
+            url:"http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=40680bd060047bd428a3f6a2748e5f31&units=metric",
+            success:weatherapi
+        });
+        function weatherapi(response){
+            var weatherboston=response.main;
+            var temp_min=parseInt(weatherboston.temp_min);
+            var temp_max=parseInt(weatherboston.temp_max);
+            $("#temprature").append(temp_min+"&#176;C"+"&nbsp;"+"~"+"&nbsp;"+temp_max+"&#176;C");
+        }
+    }
+</script>

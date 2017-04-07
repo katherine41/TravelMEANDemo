@@ -1,0 +1,119 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="profileBackground">
+</section>
+<br>
+<div class="container">
+    <div class="col-lg-12">
+        <div class="introtitle">
+            <span class="glyphicon glyphicon-heart pull-left"></span>
+            <a><h3>{{model.otheruser.username}}'s Favorites</h3></a>
+            <div></div>
+        </div>
+    </div>
+</div>
+<section id="myFavorites" ng-controller="userMainpageController as model">
+
+    <div class="container">
+        <h4 class="favorateTitle">1. Attractions</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.otherAttractions|orderBy : 'rank'">
+                <a href="#/{{model.userId}}/attractions/{{likeAttraction._id}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.rank}}. {{likeAttraction.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">2. Travel Guide</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.otherGuides">
+                <a href="#/{{model.userId}}/guide/{{likeAttraction._id}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">3. Hotels</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.otherHotels">
+                <a ng-href="{{likeAttraction.booking}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                            <p><span>${{likeAttraction.price}}</span> | <span class="stars">{{likeAttraction.stars}} STARS</span></p>
+                            <p>{{likeAttraction.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="favorateTitle">4. Restaurants</h4>
+        <div class="row detailShow" >
+            <div class="col-sm-3" ng-repeat="likeAttraction in model.otherEats">
+                <a ng-href="{{likeAttraction.url}}">
+                    <div class="thumbnail">
+                        <img ng-src={{likeAttraction.image}}>
+                        <div class="caption">
+                            <h5>{{likeAttraction.name}}</h5>
+                            <p><span>${{likeAttraction.price}}</span> | <span class="stars">{{likeAttraction.stars}} STARS</span></p>
+                            <p>{{likeAttraction.address}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

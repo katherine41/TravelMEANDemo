@@ -1,0 +1,107 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#landingPage">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll" href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="login">
+    <div class="container">
+        <div class="loginpage">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>BostonTrip</legend>
+                    <div ng-if="model.error" class="alert alert-danger alert-dismissible" role="alert" style="font-size: 16px">
+                        <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{model.error}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="text"
+                                   class="form-control"
+                                   id="inputEmail"
+                                   ng-model="email"
+                                   placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="col-lg-2 control-label">Username</label>
+                        <div class="col-lg-10">
+                            <input type="text"
+                                   class="form-control"
+                                   id="username"
+                                   ng-model="username"
+                                   placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password"
+                                   class="form-control"
+                                   id="inputPassword"
+                                   ng-model="password"
+                                   placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label>
+                        <div class="col-lg-10">
+                            <input type="password"
+                                   class="form-control"
+                                   id="verifyPassword"
+                                   ng-model="verifyPassword"
+                                   placeholder="Verify Password">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-2"></div>
+                    <div class="row col-lg-10">
+                        <div class="col-xs-6">
+                            <a  ng-click="model.register(email,username,password,verifyPassword)" class="btn btn-primary loginbtn">Register</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#/" class="btn btn-default loginbtn">Cancel</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

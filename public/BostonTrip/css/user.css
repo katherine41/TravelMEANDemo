@@ -1,0 +1,256 @@
+body{
+    width: 100%;
+    height: 100%;
+    font-family: Abel;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.login{
+    padding: 80px 0;
+    height: auto;
+    background: url("../image/1boston.jpg") no-repeat center;
+    background-size: cover;
+}
+
+a{
+    color: white;
+}
+
+.navbar-fixed-bottom a{
+    color: black;
+}
+
+.loginpage{
+    padding: 40px 20px;
+    color: white;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(50, 50, 50, 0.64);
+}
+
+.login legend{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.loginpage .loginbtn{
+    width: 100%;
+}
+
+.loginpage .or{
+    padding-top: 20px;
+    text-align: center;
+}
+.loginpage .or .col-xs-5{
+    margin-top: 8px;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+.loginpage .social{
+    list-style: none;
+    padding: 0;
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+
+.loginpage .social li{
+    padding: 10px;
+    display: inline-block;
+}
+
+.loginpage .social img{
+    width: 40px;
+}
+
+@media(min-width:767px) {
+    .login{
+        padding: 100px 0;
+        height: 100%;
+    }
+
+    .loginpage{
+        width: 60%;
+    }
+}
+/*===================================profile===================================*/
+.profileBackground{
+    padding: 70px 0;
+    background: url("../image/1boston.jpg") no-repeat top center;
+    background-size: cover;
+    -webkit-box-shadow: 0 -5px 10px 0 rgba(0,0,0,0.3) inset;
+    box-shadow: 0 -5px 10px 0 rgba(0,0,0,0.3) inset;
+}
+
+#profileMain{
+    height: auto;
+    padding: 20px 0 50px 0;
+   background-color: #eee;
+}
+
+#profilePerson{
+    position: relative;
+    margin: 0 auto;
+    margin-top: -40px;
+    width: 50px;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#profilePerson img{
+    width: 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.myProfile{
+    font-size: 16px;
+    /*background-color: white;*/
+}
+
+.myProfile a{
+    color: black;
+}
+
+.profileDetail .left{
+    text-align: right;
+    color: #7d7d7d;
+    text-transform: uppercase;
+}
+
+.profileDetail .right{
+    color: #080808;
+}
+
+.profileDetail .right .input-group{
+    width: 100%;
+}
+
+@media(min-width:767px) {
+    .profileBackground{
+        padding: 110px 0;
+    }
+    #profilePerson{
+        width: 100px;
+        margin-top: -60px;
+    }
+    #profilePerson img{
+        width: 100px;
+    }
+
+    .myProfile{
+        font-size: 20px;
+    }
+
+    .profileDetail .right .input-group{
+        width: 40%;
+    }
+}
+/*===================================detailShow===================================*/
+.detailShow a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.detailShow .thumbnail h5{
+    font-size: 18px;
+}
+
+.detailShow .thumbnail p{
+    font-size: 14px;
+}
+
+.detailShow .thumbnail span{
+    font-size: 18px;
+}
+
+.detailShow .stars{
+    color: #feba04;
+}
+
+.attractionPhoto img{
+    width: 100%;
+}
+
+.attractionDescribe span{
+    color: #de5556;
+}
+
+.jga-widget-tool {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.9;
+}
+
+.jga-widget-tool span{
+    color: #de5556;
+    font-size: 18px;
+}
+.jga-widget-tool a{
+    cursor: pointer ;
+}
+
+.myProfile .allGuides{
+    background-color: #ffffff;
+    margin: 20px 0;
+    padding: 10px;
+    border-bottom: 3px solid #dedede;
+    font-size: 18px;
+}
+
+.myProfile .allGuides img{
+    width: 100%;
+}
+
+.myProfile .allGuides h4{
+     font-size: 22px;
+     color: #de5556;
+     font-weight: 600;
+ }
+
+.myProfile .allGuides .author{
+    font-size: 16px;
+    color: #8b8b8b;
+    font-weight: 300;
+}
+
+
+    /*===================================favorites===================================*/
+#myFavorites{
+    height: auto;
+    padding: 20px 0 40px 0;
+    background-color: #ffffff;
+}
+
+#myFavorites h4{
+    font-size: 20px;
+}
+
+#myFavorites a{
+    color: black;
+}
+
+#myFavorites .detailShow .col-sm-3:nth-child(4n+1){
+    clear: both;
+}
+
+
+@media(min-width:767px) {
+    #myFavorites h4{
+        /*font-size: 20px;*/
+    }
+}

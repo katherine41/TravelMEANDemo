@@ -1,0 +1,163 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<br>
+<div class="container">
+    <div class="row" ng-controller="findGuidesController as model">
+        <div class="col-sm-8" style="border-right:1px #eeeeee solid; padding: 0 30px">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;&nbsp;{{model.eachGuide.name}}<small> | {{model.eachGuide.userName}}</small></h1>
+            </div>
+            <p>"{{model.eachGuide.description}}"</p>
+            <div class="guideContext">
+                <div
+                        ng-switch on="model.eachGuide._id">
+                    <div ng-switch-when="1">
+                        <ng-include
+                                src="'views/guide/guide1.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-when="2">
+                        <ng-include
+                                src="'views/guide/guide2.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-when="3">
+                        <ng-include
+                                src="'views/guide/guide3.html'">
+                        </ng-include>
+                    </div>
+                    <div ng-switch-default>Page not found.</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4 commentPart">
+            <br>
+            <br>
+            <div class="panel panel-default">
+                <div ng-if="model.existGuide" class="alert alert-warning alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.existGuide}}
+                </div>
+                <div ng-if="model.guideSuccess" class="alert alert-success alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.guideSuccess}}
+                </div>
+                <div class="panel-heading">
+                    <a ng-click="model.likeGuide(model.eachGuide._id,model.eachGuide.name)" style="color: black;cursor: pointer"><h3 class="panel-title">ADD TO FAVORITE:<span class="glyphicon glyphicon-heart"></span></h3></a>
+                </div>
+            </div>
+
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading">-->
+                    <!--<a href="#" style="color: black"><h3 class="panel-title" style="text-transform: uppercase">FOLLOW THIS USER:<span class="glyphicon glyphicon-ok-circle"></span></h3></a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">COMMENT:</h3>
+                </div>
+                <div ng-if="model.invalidComment" class="alert alert-danger alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.invalidComment}}
+                </div>
+
+                <div class="panel-body">
+                    <textarea
+                            rows="4"
+                            class="form-control"
+                            ng-model="comment"
+                            placeholder="Leave your comment here..."></textarea>
+                    <a ng-click="model.submitComment(comment)"><button class="btn btn-primary pull-right" style="margin-top: 10px">Submit</button></a>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">USER COMMENTS:</h3>
+                </div>
+                <div ng-if="model.AlreadyFollowed" class="alert alert-warning alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.AlreadyFollowed}}
+                </div>
+                <div ng-if="model.followSuccess" class="alert alert-success alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.followSuccess}}
+                </div>
+                <div class="panel-body userComment" ng-repeat="comment in model.othersComments">
+                    <div>
+                        <span>{{comment.userName}}</span>:&nbsp;
+                        <p>{{comment.userComment}}</p>
+                    </div>
+                    <div>
+                        <a style="color: #de5556;text-decoration: underline;cursor: pointer" ng-click="model.followOther(comment.userId,comment.userName)" class="pull-left">Follow this user</a>
+                        <p class="pull-right">{{comment.date}}</p>
+                    </div>
+                </div>
+                <div class="panel-body userComment" ng-repeat="comment in model.myComments">
+                    <div>
+                        <span>{{comment.userName}}</span>:&nbsp;
+                        <p>{{comment.userComment}}</p>
+                    </div>
+                    <div>
+                        <a style="color: #de5556;text-decoration: underline;cursor: pointer" ng-click="model.deleteComment(comment._id)" class="pull-left">Delete</a>
+                        <p class="pull-right">{{comment.date}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-left">
+            <a href="#profile/{{model.userId}}"><img src="image/love1.png" id="loveicon"></a>
+        </div>
+        <div class="pull-right">
+            <a href="#profile/{{model.userId}}"><img src="image/users.png"></a>
+        </div>
+    </div>
+</nav>

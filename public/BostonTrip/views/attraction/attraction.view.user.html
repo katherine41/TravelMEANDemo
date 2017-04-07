@@ -1,0 +1,122 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row navbar-header page-scroll">
+            <div class="col-xs-4">
+                <div  class="logo">
+                    <a class="page-scroll" href="#/landingPage/{{model.userId}}">BostonTrip</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-2">
+                <button type="button"  class="navbar-toggle"  data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/about" style="color: white">About Boston</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/attractions" style="color: white">Attractions</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/guide" style="color: white">Travel Guide</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/{{model.userId}}/live" style="color: white">Live and Eat</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="profileBackground"></section>
+<section id="profileMain">
+    <div class="container">
+        <div class="myProfile">
+            <div class="col-lg-12">
+                <div class="introtitle">
+                    <span class="glyphicon glyphicon-tree-deciduous pull-left"></span>
+                    <h3>Attractions</h3>
+                    <div></div>
+                </div>
+                <div ng-if="model.existAttraction" class="alert alert-warning alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.existAttraction}}
+                </div>
+                <div ng-if="model.attractionSuccess" class="alert alert-success alert-dismissible" role="alert">
+                    <button ng-click="model.alertClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{model.attractionSuccess}}
+                </div>
+                <div class="row detailShow">
+                    <div class="col-sm-3" ng-repeat="attraction in model.attraction|filter:{type:1}">
+                        <div class="jga-widget-tool">
+                            <a ng-click="model.likeAttraction(attraction._id,attraction.name)">
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </a>
+                        </div>
+                        <a href="#/{{model.userId}}/attractions/{{attraction._id}}">
+                            <div class="thumbnail">
+                                <img ng-src={{attraction.image}}>
+                                <div class="caption">
+                                    <h5>{{attraction.rank}}. {{attraction.name}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row detailShow">
+                    <div class="col-sm-3" ng-repeat="attraction in model.attraction|filter:{type:2}">
+                        <div class="jga-widget-tool">
+                            <a ng-click="model.likeAttraction(attraction._id,attraction.name)">
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </a>
+                        </div>
+                        <a href="#/{{model.userId}}/attractions/{{attraction._id}}">
+                            <div class="thumbnail">
+                                <img ng-src={{attraction.image}}>
+                                <div class="caption">
+                                    <h5>{{attraction.rank}}. {{attraction.name}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row detailShow">
+                    <div class="col-sm-3" ng-repeat="attraction in model.attraction|filter:{type:3}">
+                        <div class="jga-widget-tool">
+                            <a ng-click="model.likeAttraction(attraction._id,attraction.name)">
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </a>
+                        </div>
+                        <a href="#/{{model.userId}}/attractions/{{attraction._id}}">
+                            <div class="thumbnail">
+                                <img ng-src={{attraction.image}}>
+                                <div class="caption">
+                                    <h5>{{attraction.rank}}. {{attraction.name}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<nav class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-left">
+            <a href="#profile/{{model.userId}}"><img src="image/love1.png" id="loveicon"></a>
+        </div>
+        <div class="pull-right">
+            <a href="#profile/{{model.userId}}"><img src="image/users.png"></a>
+        </div>
+    </div>
+</nav>
